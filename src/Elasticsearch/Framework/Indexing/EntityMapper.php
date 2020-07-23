@@ -14,6 +14,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\Field\ChildrenAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CreatedAtField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CustomFields;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\DateField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\DateTimeField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Field;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\FkField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\FloatField;
@@ -53,8 +54,6 @@ class EntityMapper
 
     public const DATE_FIELD = [
         'type' => 'date',
-        'format' => 'yyyy-MM-dd HH:mm:ss.SSS',
-        'ignore_malformed' => true,
     ];
 
     public const KEYWORD_FIELD = ['type' => 'keyword'];
@@ -142,6 +141,7 @@ class EntityMapper
             case $field instanceof UpdatedAtField:
             case $field instanceof CreatedAtField:
             case $field instanceof DateField:
+            case $field instanceof DateTimeField:
                 return self::DATE_FIELD;
 
             case $field instanceof StringField:
