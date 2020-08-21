@@ -87,7 +87,7 @@ class TreeUpdater
             $path = 'null';
 
             if (array_key_exists('parent', $entity)) {
-                $path = '"|' . implode('|', $this->buildPathArray($entity['parent'], $pathField)) . '|"';
+                $path = "'|" . implode('|', $this->buildPathArray($entity['parent'], $pathField)) . "|'";
             }
 
             $query->set($pathField->getStorageName(), $path);

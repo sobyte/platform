@@ -234,7 +234,7 @@ class EntityWriteGateway implements EntityWriteGatewayInterface
                 $values[] = \json_encode($value, JSON_PRESERVE_ZERO_FRACTION | JSON_UNESCAPED_UNICODE);
                 // does the same thing as CAST(?, json) but works on mariadb
                 $identityValue = is_object($value) || self::isAssociative($value) ? '{}' : '[]';
-                $sets[] = '?, JSON_MERGE("' . $identityValue . '", ?)';
+                $sets[] = "?, JSON_MERGE('$identityValue', ?)";
             } else {
                 $values[] = $value;
                 $sets[] = '?, ?';
@@ -245,7 +245,7 @@ class EntityWriteGateway implements EntityWriteGatewayInterface
         $query->set(
             $storageName,
             sprintf(
-                'JSON_SET(IFNULL(%s, "{}"), %s)',
+                "JSON_SET(IFNULL(%s, '{}'), %s)",
                 EntityDefinitionQueryHelper::escape($storageName),
                 implode(', ', $sets)
             )

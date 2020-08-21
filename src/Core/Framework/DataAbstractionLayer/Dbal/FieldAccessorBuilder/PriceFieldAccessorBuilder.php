@@ -38,7 +38,7 @@ class PriceFieldAccessorBuilder implements FieldAccessorBuilderInterface
          * We can indirectly cast to float by adding 0.0
          */
         $select[] = sprintf(
-            '(JSON_UNQUOTE(JSON_EXTRACT(`%s`.`%s`, "$.%s.%s")) %s)',
+            "(JSON_UNQUOTE(JSON_EXTRACT(`%s`.`%s`, '$.%s.%s')) %s)",
             $root,
             $field->getStorageName(),
             'c' . $context->getCurrencyId(),
@@ -50,7 +50,7 @@ class PriceFieldAccessorBuilder implements FieldAccessorBuilderInterface
             $currencyFactor = sprintf('* %F', $context->getCurrencyFactor());
 
             $select[] = sprintf(
-                '(JSON_UNQUOTE(JSON_EXTRACT(`%s`.`%s`, "$.%s.%s")) %s)',
+                "(JSON_UNQUOTE(JSON_EXTRACT(`%s`.`%s`, '$.%s.%s')) %s)",
                 $root,
                 $field->getStorageName(),
                 'c' . Defaults::CURRENCY,

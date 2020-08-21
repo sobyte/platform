@@ -57,7 +57,7 @@ class JsonFieldAccessorBuilder implements FieldAccessorBuilderInterface
          *
          * For example: `JSON_EXTRACT('{"foo":null}', '$.foo') IS NOT NULL`
          */
-        return sprintf('IF(JSON_TYPE(%s) != "NULL", %s, NULL)', $jsonValueExpr, $accessor);
+        return sprintf("IF(JSON_TYPE(%s) != 'NULL', %s, NULL)", $jsonValueExpr, $accessor);
     }
 
     private function getField(string $path, array $fields): ?Field
@@ -92,7 +92,7 @@ class JsonFieldAccessorBuilder implements FieldAccessorBuilderInterface
 
         if ($field instanceof BoolField) {
             return sprintf(
-                'IF(JSON_UNQUOTE(%s) != "true" && JSON_UNQUOTE(%s) = 0, 0, 1)',
+                "IF(JSON_UNQUOTE(%s) != 'true' && JSON_UNQUOTE(%s) = 0, 0, 1)",
                 $jsonValueExpr,
                 $jsonValueExpr
             );
@@ -107,6 +107,6 @@ class JsonFieldAccessorBuilder implements FieldAccessorBuilderInterface
         }
 
         // The CONVERT is required for mariadb support (mysqls JSON_UNQUOTE returns utf8mb4)
-        return sprintf('CONVERT(JSON_UNQUOTE(%s) USING "utf8mb4") COLLATE utf8mb4_unicode_ci', $jsonValueExpr);
+        return sprintf("CONVERT(JSON_UNQUOTE(%s) USING 'utf8mb4') COLLATE utf8mb4_unicode_ci", $jsonValueExpr);
     }
 }

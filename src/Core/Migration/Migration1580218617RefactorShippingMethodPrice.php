@@ -46,12 +46,12 @@ class Migration1580218617RefactorShippingMethodPrice extends MigrationStep
                         OR (NEW.currency_id != OLD.currency_id OR (NEW.currency_id IS NOT NULL AND OLD.currency_id IS NULL))
                         AND (NEW.currency_price = OLD.currency_price OR (NEW.currency_price IS NULL AND OLD.currency_price IS NULL)) THEN
                     SET NEW.currency_price = JSON_OBJECT(
-                        CONCAT("c", LOWER(HEX(NEW.currency_id))),
+                        CONCAT(\'c\', LOWER(HEX(NEW.currency_id))),
                         JSON_OBJECT(
-                            "net", NEW.price,
-                            "gross", NEW.price,
-                            "linked", false,
-                            "currencyId", LOWER(HEX(NEW.currency_id))
+                            \'net\', NEW.price,
+                            \'gross\', NEW.price,
+                            \'linked\', false,
+                            \'currencyId\', LOWER(HEX(NEW.currency_id))
                         )
                     );
                 ELSEIF (NEW.price = OLD.price OR NEW.price IS NULL)
@@ -59,12 +59,12 @@ class Migration1580218617RefactorShippingMethodPrice extends MigrationStep
                         AND (NEW.currency_price != OLD.currency_price OR (OLD.currency_price IS NULL AND NEW.currency_price IS NOT NULL)) THEN
                     SET NEW.price = JSON_UNQUOTE(JSON_EXTRACT(
                         NEW.currency_price,
-                        CONCAT("$.", JSON_UNQUOTE(JSON_EXTRACT(JSON_KEYS(NEW.currency_price), "$[0]")), ".gross")
+                        CONCAT(\'$.\', JSON_UNQUOTE(JSON_EXTRACT(JSON_KEYS(NEW.currency_price), \'$[0]\')), \'.gross\')
                     )) + 0.0;
 
                     SET NEW.currency_id = UNHEX(JSON_UNQUOTE(JSON_EXTRACT(
                         NEW.currency_price,
-                        CONCAT("$.", JSON_UNQUOTE(JSON_EXTRACT(JSON_KEYS(NEW.currency_price), "$[0]")), ".currencyId")
+                        CONCAT(\'$.\', JSON_UNQUOTE(JSON_EXTRACT(JSON_KEYS(NEW.currency_price), \'$[0]\')), \'.currencyId\')
                     )));
                 END IF;
                 END IF;
@@ -82,23 +82,23 @@ class Migration1580218617RefactorShippingMethodPrice extends MigrationStep
                 IF @TRIGGER_DISABLED IS NULL OR @TRIGGER_DISABLED = 0 THEN
                 IF NEW.price IS NOT NULL AND NEW.currency_id IS NOT NULL AND NEW.currency_price IS NULL THEN
                     SET NEW.currency_price = JSON_OBJECT(
-                        CONCAT("c", LOWER(HEX(NEW.currency_id))),
+                        CONCAT(\'c\', LOWER(HEX(NEW.currency_id))),
                         JSON_OBJECT(
-                            "net", NEW.price,
-                            "gross", NEW.price,
-                            "linked", false,
-                            "currencyId", LOWER(HEX(NEW.currency_id))
+                            \'net\', NEW.price,
+                            \'gross\', NEW.price,
+                            \'linked\', false,
+                            \'currencyId\', LOWER(HEX(NEW.currency_id))
                         )
                     );
                 ELSEIF NEW.price IS NULL AND NEW.currency_id IS NULL AND NEW.currency_price IS NOT NULL THEN
                     SET NEW.price = JSON_UNQUOTE(JSON_EXTRACT(
                         NEW.currency_price,
-                        CONCAT("$.", JSON_UNQUOTE(JSON_EXTRACT(JSON_KEYS(NEW.currency_price), "$[0]")), ".gross")
+                        CONCAT(\'$.\', JSON_UNQUOTE(JSON_EXTRACT(JSON_KEYS(NEW.currency_price), \'$[0]\')), \'.gross\')
                     )) + 0.0;
 
                     SET NEW.currency_id = UNHEX(JSON_UNQUOTE(JSON_EXTRACT(
                         NEW.currency_price,
-                        CONCAT("$.", JSON_UNQUOTE(JSON_EXTRACT(JSON_KEYS(NEW.currency_price), "$[0]")), ".currencyId")
+                        CONCAT(\'$.\', JSON_UNQUOTE(JSON_EXTRACT(JSON_KEYS(NEW.currency_price), \'$[0]\')), \'.currencyId\')
                     )));
                 END IF;
                 END IF;

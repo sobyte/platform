@@ -17,17 +17,17 @@ class Migration1573049297AddReopenTransitionToDeliveryStates extends MigrationSt
     public function update(Connection $connection): void
     {
         $stateMachineId = (string) $connection->fetchColumn('
-            SELECT id 
+            SELECT id
             FROM state_machine
-            WHERE technical_name = "order_delivery.state"
+            WHERE technical_name = \'order_delivery.state\'
         ');
 
         $result = $connection->executeQuery('
             SELECT id, technical_name
             FROM state_machine_state
             WHERE state_machine_id = :stateMachineId AND (
-                technical_name = "open" OR
-                technical_name = "cancelled" 
+                technical_name = \'open\' OR
+                technical_name = \'cancelled\'
             )
         ', ['stateMachineId' => $stateMachineId])->fetchAll();
 

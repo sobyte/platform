@@ -15,7 +15,7 @@ class Migration1585816139FixMediaMapping extends MigrationStep
     public function update(Connection $connection): void
     {
         $categoryProfileId = $connection->executeQuery(
-            'SELECT `id` FROM `import_export_profile` WHERE `name` = :name AND `system_default` = 1 AND source_entity = "category"',
+            'SELECT `id` FROM `import_export_profile` WHERE `name` = :name AND `system_default` = 1 AND source_entity = \'category\'',
             ['name' => 'Default category']
         )->fetchColumn();
 
@@ -25,7 +25,7 @@ class Migration1585816139FixMediaMapping extends MigrationStep
         }
 
         $mediaProfileId = $connection->executeQuery(
-            'SELECT `id` FROM `import_export_profile` WHERE `name` = :name AND `system_default` = 1 AND source_entity = "media"',
+            'SELECT `id` FROM `import_export_profile` WHERE `name` = :name AND `system_default` = 1 AND source_entity = \'media\'',
             ['name' => 'Default media']
         )->fetchColumn();
 

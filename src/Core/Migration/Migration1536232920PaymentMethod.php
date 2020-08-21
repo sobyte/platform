@@ -18,7 +18,7 @@ class Migration1536232920PaymentMethod extends MigrationStep
         $connection->executeUpdate('
             CREATE TABLE `payment_method` (
                 `id`                    BINARY(16)                              NOT NULL,
-                `handler_identifier`    VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT "' . str_replace('\\', '\\\\', DefaultPayment::class) . '",
+                `handler_identifier`    VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT \'' . str_replace('\\', '\\\\', DefaultPayment::class) . '\',
                 `position`              INT(11)                                 NOT NULL DEFAULT 1,
                 `active`                TINYINT(1)                              NOT NULL DEFAULT 0,
                 `availability_rule_id`  BINARY(16)                              NULL,
@@ -27,9 +27,9 @@ class Migration1536232920PaymentMethod extends MigrationStep
                 `created_at`            DATETIME(3)                             NOT NULL,
                 `updated_at`            DATETIME(3)                             NULL,
                 PRIMARY KEY (`id`),
-                CONSTRAINT `fk.payment_method.availability_rule_id` FOREIGN KEY (`availability_rule_id`) 
+                CONSTRAINT `fk.payment_method.availability_rule_id` FOREIGN KEY (`availability_rule_id`)
                   REFERENCES `rule` (id) ON UPDATE CASCADE ON DELETE SET NULL,
-                CONSTRAINT `fk.payment_method.plugin_id` FOREIGN KEY (`plugin_id`) 
+                CONSTRAINT `fk.payment_method.plugin_id` FOREIGN KEY (`plugin_id`)
                   REFERENCES `plugin` (id) ON UPDATE CASCADE ON DELETE SET NULL,
                 CONSTRAINT `fk.payment_method.media_id` FOREIGN KEY (`media_id`)
                   REFERENCES `media` (`id`) ON DELETE SET NULL ON UPDATE CASCADE

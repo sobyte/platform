@@ -15,7 +15,7 @@ class Migration1586334003AddParentIdToProductProfile extends MigrationStep
     public function update(Connection $connection): void
     {
         $productProfileId = $connection->executeQuery(
-            'SELECT `id` FROM `import_export_profile` WHERE `name` = :name AND `system_default` = 1 AND source_entity = "product"',
+            'SELECT `id` FROM `import_export_profile` WHERE `name` = :name AND `system_default` = 1 AND source_entity = \'product\'',
             ['name' => 'Default product']
         )->fetchColumn();
 

@@ -1284,7 +1284,7 @@ class Migration1536233560BasicData extends MigrationStep
         $connection->insert('rule', ['id' => $allCustomersRuleId, 'name' => 'All customers', 'priority' => 1, 'invalid' => 0, 'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)]);
         $connection->insert('rule_condition', ['id' => Uuid::randomBytes(), 'rule_id' => $allCustomersRuleId, 'type' => 'customerCustomerGroup', 'value' => json_encode(['operator' => '=', 'customerGroupIds' => [Defaults::FALLBACK_CUSTOMER_GROUP]]), 'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)]);
 
-        $usaCountryId = $connection->executeQuery('SELECT LOWER(hex(id)) FROM country WHERE `iso3` = "USA"')->fetchColumn();
+        $usaCountryId = $connection->executeQuery('SELECT LOWER(hex(id)) FROM country WHERE `iso3` = \'USA\'')->fetchColumn();
         $usaRuleId = Uuid::randomBytes();
         $connection->insert('rule', ['id' => $usaRuleId, 'name' => 'Customers from USA', 'priority' => 100, 'invalid' => 0, 'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)]);
         $connection->insert('rule_condition', ['id' => Uuid::randomBytes(), 'rule_id' => $usaRuleId, 'type' => 'customerBillingCountry', 'value' => json_encode(['operator' => '=', 'countryIds' => [$usaCountryId]]), 'created_at' => (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT)]);

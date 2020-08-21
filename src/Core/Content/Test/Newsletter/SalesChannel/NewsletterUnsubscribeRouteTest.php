@@ -47,7 +47,7 @@ class NewsletterUnsubscribeRouteTest extends TestCase
                 ]
             );
 
-        $count = (int) $this->getContainer()->get(Connection::class)->fetchColumn('SELECT COUNT(*) FROM newsletter_recipient WHERE email = "test@test.de" AND status = "direct"');
+        $count = (int) $this->getContainer()->get(Connection::class)->fetchColumn("SELECT COUNT(*) FROM newsletter_recipient WHERE email = 'test@test.de' AND status = 'direct'");
         static::assertSame(1, $count);
 
         $this->browser
@@ -59,7 +59,7 @@ class NewsletterUnsubscribeRouteTest extends TestCase
                 ]
             );
 
-        $count = (int) $this->getContainer()->get(Connection::class)->fetchColumn('SELECT COUNT(*) FROM newsletter_recipient WHERE email = "test@test.de" AND status = "direct"');
+        $count = (int) $this->getContainer()->get(Connection::class)->fetchColumn("SELECT COUNT(*) FROM newsletter_recipient WHERE email = 'test@test.de' AND status = 'direct'");
         static::assertSame(0, $count);
     }
 }

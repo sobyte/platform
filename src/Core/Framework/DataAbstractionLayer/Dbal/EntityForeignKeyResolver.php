@@ -175,7 +175,7 @@ class EntityForeignKeyResolver
 
                 $query->addSelect(
                     'GROUP_CONCAT(DISTINCT CONCAT('
-                        . 'HEX(' . EntityDefinitionQueryHelper::escape($alias) . '.`' . $entityColumnName . '`),"-",'
+                        . 'HEX(' . EntityDefinitionQueryHelper::escape($alias) . '.`' . $entityColumnName . "`),'-',"
                         . 'HEX(' . EntityDefinitionQueryHelper::escape($alias) . '.`' . $languageColumnName . '`)'
                     . ')'
                     . ' SEPARATOR \'||\')  as ' . EntityDefinitionQueryHelper::escape($alias)

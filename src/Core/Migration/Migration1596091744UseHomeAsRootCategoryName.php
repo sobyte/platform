@@ -14,7 +14,7 @@ class Migration1596091744UseHomeAsRootCategoryName extends MigrationStep
 
     public function update(Connection $connection): void
     {
-        $connection->executeUpdate('UPDATE category_translation SET `name` = "Home" WHERE `name` IN ("Catalogue #1", "Katalog #1") AND updated_at IS NULL');
+        $connection->executeUpdate('UPDATE category_translation SET `name` = \'Home\' WHERE `name` IN (\'Catalogue #1\', \'Katalog #1\') AND updated_at IS NULL');
     }
 
     public function updateDestructive(Connection $connection): void

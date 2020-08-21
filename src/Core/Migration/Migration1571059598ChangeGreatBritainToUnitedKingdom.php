@@ -16,24 +16,24 @@ class Migration1571059598ChangeGreatBritainToUnitedKingdom extends MigrationStep
     {
         $connection->exec('
             UPDATE `country_translation`
-            SET `name` = "United Kingdom"
-            WHERE `name` = "Great Britain" AND (
+            SET `name` = \'United Kingdom\'
+            WHERE `name` = \'Great Britain\' AND (
                 SELECT `locale`.`code`
                 FROM `language`
                 INNER JOIN `locale` ON `language`.`locale_id` = `locale`.`id`
                 WHERE `language`.`id` = `country_translation`.`language_id`
-            ) = "en-GB"
+            ) = \'en-GB\'
         ');
 
         $connection->exec('
             UPDATE `country_translation`
-            SET `name` = "Vereinigtes Königreich"
-            WHERE `name` = "Großbritannien" AND (
+            SET `name` = \'Vereinigtes Königreich\'
+            WHERE `name` = \'Großbritannien\' AND (
                 SELECT `locale`.`code`
                 FROM `language`
                 INNER JOIN `locale` ON `language`.`locale_id` = `locale`.`id`
                 WHERE `language`.`id` = `country_translation`.`language_id`
-            ) = "de-DE"
+            ) = \'de-DE\'
         ');
     }
 

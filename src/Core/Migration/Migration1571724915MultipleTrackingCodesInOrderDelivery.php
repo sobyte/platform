@@ -22,7 +22,7 @@ class Migration1571724915MultipleTrackingCodesInOrderDelivery extends MigrationS
 
         $connection->executeUpdate('
             UPDATE `order_delivery`
-            SET `tracking_codes` = IF(`tracking_code` IS NULL OR `tracking_code` = "", JSON_ARRAY(), JSON_ARRAY(`tracking_code`));
+            SET `tracking_codes` = IF(`tracking_code` IS NULL OR `tracking_code` = \'\', JSON_ARRAY(), JSON_ARRAY(`tracking_code`));
         ');
 
         $connection->executeUpdate('

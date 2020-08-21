@@ -19,7 +19,7 @@ class Migration1568120302CmsBlockUpdate extends MigrationStep
         $connection->executeUpdate('
             ALTER TABLE `cms_block`
             ADD `cms_section_id` BINARY(16) NULL AFTER `id`,
-            ADD `section_position` VARCHAR(50) DEFAULT "main" AFTER `position`
+            ADD `section_position` VARCHAR(50) DEFAULT \'main\' AFTER `position`
         ');
 
         $pages = $connection->fetchAll('SELECT * FROM `cms_page`');

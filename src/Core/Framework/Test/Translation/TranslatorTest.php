@@ -204,10 +204,10 @@ class TranslatorTest extends TestCase
     private function switchDefaultLanguage(): void
     {
         $currentDeId = $this->connection->fetchColumn(
-            'SELECT language.id
+            "SELECT language.id
              FROM language
              INNER JOIN locale ON translation_code_id = locale.id
-             WHERE locale.code = "de-DE"'
+             WHERE locale.code = 'de-DE'"
         );
 
         $stmt = $this->connection->prepare(

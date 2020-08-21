@@ -47,7 +47,7 @@ class CompositeEntitySearcherTest extends TestCase
 
         /** @var Connection $connection */
         $connection = $this->getContainer()->get(Connection::class);
-        $userId = (string) $connection->executeQuery('SELECT id FROM `user` WHERE username = "admin"')->fetchColumn();
+        $userId = (string) $connection->executeQuery("SELECT id FROM `user` WHERE username = 'admin'")->fetchColumn();
         $this->userId = Uuid::fromBytesToHex($userId);
         $this->context = Context::createDefaultContext();
     }

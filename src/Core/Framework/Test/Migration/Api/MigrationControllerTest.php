@@ -22,7 +22,7 @@ class MigrationControllerTest extends TestCase
 
         $connection->createQueryBuilder()
             ->delete('migration')
-            ->where('`class` LIKE "%_test_migrations_valid%"')
+            ->where("`class` LIKE '%_test_migrations_valid%'")
             ->execute();
     }
 
@@ -144,7 +144,7 @@ class MigrationControllerTest extends TestCase
         $query = $connection->createQueryBuilder()
             ->select('COUNT(*)')
             ->from('migration')
-            ->where('`class` LIKE "%_test_migrations_valid%"');
+            ->where("`class` LIKE '%_test_migrations_valid%'");
 
         if ($executed && $destructive) {
             $query->andWhere('`update_destructive` IS NOT NULL');

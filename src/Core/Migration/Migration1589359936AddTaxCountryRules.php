@@ -60,7 +60,7 @@ class Migration1589359936AddTaxCountryRules extends MigrationStep
         $reducedRate = $connection->executeQuery('SELECT id FROM tax WHERE tax_rate = 7')->fetchColumn();
         $reducedRate2 = $connection->executeQuery('SELECT id FROM tax WHERE tax_rate = 0')->fetchColumn();
         $this->fetchCountryIds($connection);
-        $taxRuleTypeId = $connection->executeQuery('SELECT id FROM tax_rule_type WHERE technical_name = "entire_country"')->fetchColumn();
+        $taxRuleTypeId = $connection->executeQuery('SELECT id FROM tax_rule_type WHERE technical_name = \'entire_country\'')->fetchColumn();
 
         foreach ($this->getCountryTaxes() as $isoCode => $countryTax) {
             if (!array_key_exists($isoCode, $this->countryIds)) {

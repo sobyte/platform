@@ -46,7 +46,7 @@ class ListingPriceFieldAccessorBuilder implements FieldAccessorBuilderInterface
             $select[] = str_replace(
                 array_keys($parameters),
                 array_values($parameters),
-                '(JSON_UNQUOTE(JSON_EXTRACT(`#root#`.`#field#`, "$.#rule_key#.#currency_key#.to.#tax_mode#")) + 0.0)'
+                "(JSON_UNQUOTE(JSON_EXTRACT(`#root#`.`#field#`, '\$.#rule_key#.#currency_key#.to.#tax_mode#')) + 0.0)"
             );
 
             if ($context->getCurrencyId() === Defaults::CURRENCY) {
@@ -65,7 +65,7 @@ class ListingPriceFieldAccessorBuilder implements FieldAccessorBuilderInterface
             $select[] = str_replace(
                 array_keys($parameters),
                 array_values($parameters),
-                '(JSON_UNQUOTE(JSON_EXTRACT(`#root#`.`#field#`, "$.#rule_key#.#currency_key#.to.#tax_mode#")) * #factor#)'
+                "(JSON_UNQUOTE(JSON_EXTRACT(`#root#`.`#field#`, '\$.#rule_key#.#currency_key#.to.#tax_mode#')) * #factor#)"
             );
         }
 

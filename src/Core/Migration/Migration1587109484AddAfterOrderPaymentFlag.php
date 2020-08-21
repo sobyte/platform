@@ -22,10 +22,10 @@ class Migration1587109484AddAfterOrderPaymentFlag extends MigrationStep
         $connection->executeUpdate(
             'UPDATE `payment_method`
             SET `after_order_enabled` = 1 WHERE `handler_identifier` IN (
-                "Shopware\\\Core\\\Checkout\\\Payment\\\Cart\\\PaymentHandler\\\DebitPayment",
-                "Shopware\\\Core\\\Checkout\\\Payment\\\Cart\\\PaymentHandler\\\CashPayment",
-                "Shopware\\\Core\\\Checkout\\\Payment\\\Cart\\\PaymentHandler\\\PrePayment",
-                "Shopware\\\Core\\\Checkout\\\Payment\\\Cart\\\PaymentHandler\\\InvoicePayment"
+                \'Shopware\\\Core\\\Checkout\\\Payment\\\Cart\\\PaymentHandler\\\DebitPayment\',
+                \'Shopware\\\Core\\\Checkout\\\Payment\\\Cart\\\PaymentHandler\\\CashPayment\',
+                \'Shopware\\\Core\\\Checkout\\\Payment\\\Cart\\\PaymentHandler\\\PrePayment\',
+                \'Shopware\\\Core\\\Checkout\\\Payment\\\Cart\\\PaymentHandler\\\InvoicePayment\'
             )'
         );
     }

@@ -19,7 +19,7 @@ class Migration1578475268FixSloveneLocale extends MigrationStep
             return;
         }
 
-        $localeId = $connection->query('SELECT id FROM locale WHERE code = "sl-SI"')->fetchColumn();
+        $localeId = $connection->query('SELECT id FROM locale WHERE code = \'sl-SI\'')->fetchColumn();
         if (!$localeId) {
             return;
         }

@@ -28,11 +28,11 @@ trait ApiVersioningTestBehaviour
     protected static function clearCache(): void
     {
         $cacheId = Uuid::randomHex();
-        static::container()->get(Connection::class)->executeUpdate('
+        static::container()->get(Connection::class)->executeUpdate("
             UPDATE `app_config`
             SET `value` = :cacheId
-            WHERE `key` = "cache-id"
-        ', ['cacheId' => $cacheId]);
+            WHERE `key` = 'cache-id'
+        ", ['cacheId' => $cacheId]);
 
         KernelLifecycleManager::getKernel()->reboot(null, null, $cacheId);
     }
