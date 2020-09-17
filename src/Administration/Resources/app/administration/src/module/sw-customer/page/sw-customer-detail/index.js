@@ -79,6 +79,7 @@ Component.register('sw-customer-detail', {
                 .addAssociation('group')
                 .addAssociation('salutation')
                 .addAssociation('salesChannel')
+                .addAssociation('salesChannel.domains')
                 .addAssociation('defaultPaymentMethod')
                 .addAssociation('lastPaymentMethod')
                 .addAssociation('defaultBillingAddress.country')
