@@ -40,7 +40,8 @@ Component.register('sw-product-detail', {
         return {
             productNumberPreview: '',
             isSaveSuccessful: false,
-            cloning: false
+            cloning: false,
+            viewing: false
         };
     },
 
@@ -641,6 +642,14 @@ Component.register('sw-product-detail', {
 
         onDuplicate() {
             this.cloning = true;
+        },
+
+        onView() {
+            this.viewing = true;
+        },
+
+        onCloseView() {
+            this.viewing = false;
         },
 
         onDuplicateFinish(duplicate) {

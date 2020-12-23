@@ -1,0 +1,26 @@
+<sw-modal :title="$t('sw-product.general.viewTitle')" @modal-close="closeModal">
+
+    <template slot="modal-footer">
+        <sw-button :disabled="!domain" @click="openWindow">
+            {{ $t('sw-product.detail.buttonView') }}
+        </sw-button>
+    </template>
+
+    <template>
+
+        <sw-container>
+            <p>{{ $t('sw-product.general.viewNotice') }}</p>
+
+            <sw-entity-single-select
+                entity="sales_channel_domain"
+                labelProperty="url"
+                :criteria="criteria"
+                :value="domainId"
+                @change="changeDomain"
+            >
+            </sw-entity-single-select>
+        </sw-container>
+
+    </template>
+
+</sw-modal>

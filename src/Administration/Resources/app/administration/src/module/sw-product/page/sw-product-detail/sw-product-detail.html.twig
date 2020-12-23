@@ -21,6 +21,10 @@
                     </sw-button>
                 {% endblock %}
 
+                <sw-button :disabled="isLoading" @click="onView">
+                    {{ $t('sw-product.detail.buttonView') }}
+                </sw-button>
+
                 <sw-button-group
                     class="sw-product-detail__save-button-group"
                     :splitButton="true"
@@ -166,6 +170,11 @@
                 {% block sw_product_detail_content_clone_modal %}
                     <sw-product-clone-modal :product="product" v-if="cloning" @clone-finish="onDuplicateFinish"></sw-product-clone-modal>
                 {% endblock %}
+
+                {% block sw_product_detail_content_view_modal %}
+                    <sw-product-view-modal :product="product" v-if="viewing" @modal-close="onCloseView"></sw-product-view-modal>
+                {% endblock %}
+
             </sw-card-view>
         {% endblock %}
 

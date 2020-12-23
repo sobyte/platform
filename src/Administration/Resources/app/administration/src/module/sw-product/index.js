@@ -25,6 +25,7 @@ import './component/sw-product-cross-selling-form';
 import './component/sw-product-variant-modal';
 import './component/sw-product-cross-selling-assignment';
 import './component/sw-product-layout-assignment';
+import './component/sw-product-view-modal';
 import './view/sw-product-detail-base';
 import './view/sw-product-detail-context-prices';
 import './view/sw-product-detail-properties';

@@ -21,7 +21,9 @@
       "copy": "Copy",
       "cloneSuffix": "variants",
       "cloneNotice": "The product variants are duplicated. If this process is interrupted, it is possible that not all variants are duplicated completely. In this case you can generate the variants in the new product again.",
-      "cloneTitle": "Duplicate variants"
+      "cloneTitle": "Duplicate variants",
+      "viewTitle": "View product",
+      "viewNotice": "Please select a sales channel domain for viewing this product. The domains are filtered for Storefront sales channels by the visibility of the product. Make sure to configure the visibility of this product by closing this modal."
     },
     "basicForm": {
       "labelTitle": "Title",
@@ -209,6 +211,7 @@
     "detail": {
       "textHeadline": "New product",
       "buttonCancel": "Cancel",
+      "buttonView": "View",
       "buttonSave": "Save",
       "buttonSaveDuplicate": "Save and duplicate",
       "buttonSaveAndNew": "Save and create new",
